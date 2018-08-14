@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+  <classPathEntry location=".\lib\mysql-connector-java-5.1.25.jar" />
+
+  <context id="frms-mgr" targetRuntime="MyBatis3">
+
+    <property name="javaFileEncoding" value="UTF-8"/>
+    <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+    <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+
+    <!-- <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin"> <property name="targetPackage" value="mybatis"
+      /> <property name="targetProject" value="../rtms-orm/src/main/resources" /> </plugin> -->
+    <commentGenerator>
+      <property name="suppressDate" value="true" />
+      <property name="suppressAllComments" value="false" />
+      <property name="addRemarkComments" value="true"/>
+      <property name="javaFileEncoding" value="UTF-8"/>
+    </commentGenerator>
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/tms?useInformationSchema=true&amp;characterEncoding=utf8"
+                    userId="tms" password="haiwaigo">
+    </jdbcConnection>
+
+    <javaTypeResolver>
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <javaModelGenerator  targetPackage="org.joll.automate.tms.source.model" targetProject="../autotest/src/main/java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+
+    <sqlMapGenerator targetPackage="mapper" targetProject="../autotest/src/main/resources/META-INF">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="org.joll.automate.tms.source.persistence"
+                         targetProject="../autotest/src/main/java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+    <table schema="tms" tableName="auth_user" domainObjectName="User">
+      <property name="useActualColumnNames" value="false" />
+      <property name="ignoreQualifiersAtRuntime" value="true" />
+      <property name="constructorBased" value="false" />
+      <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" type="post" identity="true" />
+    </table>
+  </context>
+</generatorConfiguration>
